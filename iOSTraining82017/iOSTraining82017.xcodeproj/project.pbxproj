@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C1363151F336A3D0095C1DB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1363141F336A3D0095C1DB /* SignUpViewController.swift */; };
+		3C1363171F336DBB0095C1DB /* CustomLabelAddPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1363161F336DBB0095C1DB /* CustomLabelAddPhoto.swift */; };
+		3C8E75E71F33291500AEF3C7 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8E75E61F33291500AEF3C7 /* CustomTextField.swift */; };
+		3C8E75E91F3329C500AEF3C7 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8E75E81F3329C500AEF3C7 /* CustomButton.swift */; };
+		3CBECC961F3817620049E800 /* ExtensionSigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBECC951F3817620049E800 /* ExtensionSigninViewController.swift */; };
+		3CBECCA41F38578E0049E800 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBECCA31F38578E0049E800 /* Helper.swift */; };
 		87CDD3981F32D9EC00B5AF88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CDD3971F32D9EC00B5AF88 /* AppDelegate.swift */; };
-		87CDD39A1F32D9EC00B5AF88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CDD3991F32D9EC00B5AF88 /* ViewController.swift */; };
+		87CDD39A1F32D9EC00B5AF88 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CDD3991F32D9EC00B5AF88 /* SignInViewController.swift */; };
 		87CDD39D1F32D9EC00B5AF88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87CDD39B1F32D9EC00B5AF88 /* Main.storyboard */; };
 		87CDD3A01F32D9EC00B5AF88 /* iOSTraining82017.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87CDD39E1F32D9EC00B5AF88 /* iOSTraining82017.xcdatamodeld */; };
 		87CDD3A21F32D9EC00B5AF88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87CDD3A11F32D9EC00B5AF88 /* Assets.xcassets */; };
@@ -16,9 +22,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C1363141F336A3D0095C1DB /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		3C1363161F336DBB0095C1DB /* CustomLabelAddPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLabelAddPhoto.swift; sourceTree = "<group>"; };
+		3C8E75E61F33291500AEF3C7 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		3C8E75E81F3329C500AEF3C7 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		3CBECC951F3817620049E800 /* ExtensionSigninViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionSigninViewController.swift; sourceTree = "<group>"; };
+		3CBECCA31F38578E0049E800 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		87CDD3941F32D9EC00B5AF88 /* iOSTraining82017.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSTraining82017.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87CDD3971F32D9EC00B5AF88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		87CDD3991F32D9EC00B5AF88 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		87CDD3991F32D9EC00B5AF88 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		87CDD39C1F32D9EC00B5AF88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		87CDD39F1F32D9EC00B5AF88 /* iOSTraining82017.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOSTraining82017.xcdatamodel; sourceTree = "<group>"; };
 		87CDD3A11F32D9EC00B5AF88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -37,6 +49,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3CBECC941F38173F0049E800 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3CBECC951F3817620049E800 /* ExtensionSigninViewController.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		3CBECCA21F38577D0049E800 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				3CBECCA31F38578E0049E800 /* Helper.swift */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
 		87CDD38B1F32D9EC00B5AF88 = {
 			isa = PBXGroup;
 			children = (
@@ -56,13 +84,19 @@
 		87CDD3961F32D9EC00B5AF88 /* iOSTraining82017 */ = {
 			isa = PBXGroup;
 			children = (
+				3CBECCA21F38577D0049E800 /* Helper */,
+				3CBECC941F38173F0049E800 /* Extension */,
 				87CDD3971F32D9EC00B5AF88 /* AppDelegate.swift */,
-				87CDD3991F32D9EC00B5AF88 /* ViewController.swift */,
+				87CDD3991F32D9EC00B5AF88 /* SignInViewController.swift */,
+				3C1363141F336A3D0095C1DB /* SignUpViewController.swift */,
 				87CDD39B1F32D9EC00B5AF88 /* Main.storyboard */,
 				87CDD3A11F32D9EC00B5AF88 /* Assets.xcassets */,
 				87CDD3A31F32D9EC00B5AF88 /* LaunchScreen.storyboard */,
 				87CDD3A61F32D9EC00B5AF88 /* Info.plist */,
 				87CDD39E1F32D9EC00B5AF88 /* iOSTraining82017.xcdatamodeld */,
+				3C8E75E61F33291500AEF3C7 /* CustomTextField.swift */,
+				3C8E75E81F3329C500AEF3C7 /* CustomButton.swift */,
+				3C1363161F336DBB0095C1DB /* CustomLabelAddPhoto.swift */,
 			);
 			path = iOSTraining82017;
 			sourceTree = "<group>";
@@ -139,9 +173,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87CDD39A1F32D9EC00B5AF88 /* ViewController.swift in Sources */,
+				3C1363151F336A3D0095C1DB /* SignUpViewController.swift in Sources */,
+				3C8E75E71F33291500AEF3C7 /* CustomTextField.swift in Sources */,
+				87CDD39A1F32D9EC00B5AF88 /* SignInViewController.swift in Sources */,
+				3C1363171F336DBB0095C1DB /* CustomLabelAddPhoto.swift in Sources */,
 				87CDD3A01F32D9EC00B5AF88 /* iOSTraining82017.xcdatamodeld in Sources */,
+				3CBECC961F3817620049E800 /* ExtensionSigninViewController.swift in Sources */,
+				3CBECCA41F38578E0049E800 /* Helper.swift in Sources */,
 				87CDD3981F32D9EC00B5AF88 /* AppDelegate.swift in Sources */,
+				3C8E75E91F3329C500AEF3C7 /* CustomButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +345,7 @@
 				87CDD3AB1F32D9EC00B5AF88 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
