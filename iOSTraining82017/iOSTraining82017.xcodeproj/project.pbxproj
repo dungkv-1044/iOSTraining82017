@@ -11,7 +11,7 @@
 		3C1363171F336DBB0095C1DB /* CustomLabelAddPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1363161F336DBB0095C1DB /* CustomLabelAddPhoto.swift */; };
 		3C8E75E71F33291500AEF3C7 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8E75E61F33291500AEF3C7 /* CustomTextField.swift */; };
 		3C8E75E91F3329C500AEF3C7 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8E75E81F3329C500AEF3C7 /* CustomButton.swift */; };
-		3CBECC961F3817620049E800 /* ExtensionSigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBECC951F3817620049E800 /* ExtensionSigninViewController.swift */; };
+		3CBECC961F3817620049E800 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBECC951F3817620049E800 /* Extension.swift */; };
 		3CBECCA41F38578E0049E800 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBECCA31F38578E0049E800 /* Helper.swift */; };
 		87CDD3981F32D9EC00B5AF88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CDD3971F32D9EC00B5AF88 /* AppDelegate.swift */; };
 		87CDD39A1F32D9EC00B5AF88 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CDD3991F32D9EC00B5AF88 /* SignInViewController.swift */; };
@@ -19,6 +19,17 @@
 		87CDD3A01F32D9EC00B5AF88 /* iOSTraining82017.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87CDD39E1F32D9EC00B5AF88 /* iOSTraining82017.xcdatamodeld */; };
 		87CDD3A21F32D9EC00B5AF88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87CDD3A11F32D9EC00B5AF88 /* Assets.xcassets */; };
 		87CDD3A51F32D9EC00B5AF88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87CDD3A31F32D9EC00B5AF88 /* LaunchScreen.storyboard */; };
+		C48A0F551F4417CF003652E1 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A0F541F4417CF003652E1 /* UpdateProfileViewController.swift */; };
+		C48B96AF1F3BFC63003C691F /* UpdateStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B96AE1F3BFC63003C691F /* UpdateStatusViewController.swift */; };
+		C49DF3831F3B063700DD649F /* NewfeedItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49DF3821F3B063700DD649F /* NewfeedItemTableViewCell.swift */; };
+		C49DF3861F3B065D00DD649F /* CustomUIViewUpdateStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49DF3851F3B065D00DD649F /* CustomUIViewUpdateStatus.swift */; };
+		C49DF3881F3B06E100DD649F /* TimelineCommentContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49DF3871F3B06E100DD649F /* TimelineCommentContainerView.swift */; };
+		C49DF38A1F3B06FC00DD649F /* TimelineCommentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49DF3891F3B06FC00DD649F /* TimelineCommentTableViewController.swift */; };
+		C49DF38E1F3B073900DD649F /* TimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49DF38D1F3B073900DD649F /* TimelineTableViewController.swift */; };
+		C49DF3901F3B076B00DD649F /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49DF38F1F3B076B00DD649F /* DataServices.swift */; };
+		C49DF3921F3B078300DD649F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49DF3911F3B078300DD649F /* Post.swift */; };
+		C49F408F1F457FA400A4768E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F408E1F457FA400A4768E /* User.swift */; };
+		C4B9BE6F1F43F3F900703367 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9BE6E1F43F3F900703367 /* ProfileTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +37,7 @@
 		3C1363161F336DBB0095C1DB /* CustomLabelAddPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLabelAddPhoto.swift; sourceTree = "<group>"; };
 		3C8E75E61F33291500AEF3C7 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		3C8E75E81F3329C500AEF3C7 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		3CBECC951F3817620049E800 /* ExtensionSigninViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionSigninViewController.swift; sourceTree = "<group>"; };
+		3CBECC951F3817620049E800 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		3CBECCA31F38578E0049E800 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		87CDD3941F32D9EC00B5AF88 /* iOSTraining82017.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSTraining82017.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87CDD3971F32D9EC00B5AF88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +47,17 @@
 		87CDD3A11F32D9EC00B5AF88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87CDD3A41F32D9EC00B5AF88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		87CDD3A61F32D9EC00B5AF88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C48A0F541F4417CF003652E1 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
+		C48B96AE1F3BFC63003C691F /* UpdateStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateStatusViewController.swift; sourceTree = "<group>"; };
+		C49DF3821F3B063700DD649F /* NewfeedItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewfeedItemTableViewCell.swift; sourceTree = "<group>"; };
+		C49DF3851F3B065D00DD649F /* CustomUIViewUpdateStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIViewUpdateStatus.swift; sourceTree = "<group>"; };
+		C49DF3871F3B06E100DD649F /* TimelineCommentContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineCommentContainerView.swift; sourceTree = "<group>"; };
+		C49DF3891F3B06FC00DD649F /* TimelineCommentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineCommentTableViewController.swift; sourceTree = "<group>"; };
+		C49DF38D1F3B073900DD649F /* TimelineTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableViewController.swift; sourceTree = "<group>"; };
+		C49DF38F1F3B076B00DD649F /* DataServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
+		C49DF3911F3B078300DD649F /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		C49F408E1F457FA400A4768E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C4B9BE6E1F43F3F900703367 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +74,7 @@
 		3CBECC941F38173F0049E800 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				3CBECC951F3817620049E800 /* ExtensionSigninViewController.swift */,
+				3CBECC951F3817620049E800 /* Extension.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -86,19 +108,78 @@
 			children = (
 				3CBECCA21F38577D0049E800 /* Helper */,
 				3CBECC941F38173F0049E800 /* Extension */,
+				C49DF3841F3B064900DD649F /* CustomCell */,
+				C49DF3811F3B05D200DD649F /* DesignableX */,
+				C49DF3931F3B079300DD649F /* Model */,
+				C49DF37F1F3B05BF00DD649F /* Controller */,
+				C49DF3801F3B05CA00DD649F /* Storyboard */,
+				C49DF37E1F3B05AF00DD649F /* SupportingFiles */,
+			);
+			path = iOSTraining82017;
+			sourceTree = "<group>";
+		};
+		C49DF37E1F3B05AF00DD649F /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
 				87CDD3971F32D9EC00B5AF88 /* AppDelegate.swift */,
-				87CDD3991F32D9EC00B5AF88 /* SignInViewController.swift */,
-				3C1363141F336A3D0095C1DB /* SignUpViewController.swift */,
-				87CDD39B1F32D9EC00B5AF88 /* Main.storyboard */,
 				87CDD3A11F32D9EC00B5AF88 /* Assets.xcassets */,
-				87CDD3A31F32D9EC00B5AF88 /* LaunchScreen.storyboard */,
 				87CDD3A61F32D9EC00B5AF88 /* Info.plist */,
 				87CDD39E1F32D9EC00B5AF88 /* iOSTraining82017.xcdatamodeld */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		C49DF37F1F3B05BF00DD649F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				87CDD3991F32D9EC00B5AF88 /* SignInViewController.swift */,
+				3C1363141F336A3D0095C1DB /* SignUpViewController.swift */,
+				C49DF3871F3B06E100DD649F /* TimelineCommentContainerView.swift */,
+				C49DF3891F3B06FC00DD649F /* TimelineCommentTableViewController.swift */,
+				C49DF38D1F3B073900DD649F /* TimelineTableViewController.swift */,
+				C48B96AE1F3BFC63003C691F /* UpdateStatusViewController.swift */,
+				C4B9BE6E1F43F3F900703367 /* ProfileTableViewController.swift */,
+				C48A0F541F4417CF003652E1 /* UpdateProfileViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		C49DF3801F3B05CA00DD649F /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				87CDD39B1F32D9EC00B5AF88 /* Main.storyboard */,
+				87CDD3A31F32D9EC00B5AF88 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		C49DF3811F3B05D200DD649F /* DesignableX */ = {
+			isa = PBXGroup;
+			children = (
 				3C8E75E61F33291500AEF3C7 /* CustomTextField.swift */,
 				3C8E75E81F3329C500AEF3C7 /* CustomButton.swift */,
 				3C1363161F336DBB0095C1DB /* CustomLabelAddPhoto.swift */,
+				C49DF3851F3B065D00DD649F /* CustomUIViewUpdateStatus.swift */,
 			);
-			path = iOSTraining82017;
+			name = DesignableX;
+			sourceTree = "<group>";
+		};
+		C49DF3841F3B064900DD649F /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				C49DF3821F3B063700DD649F /* NewfeedItemTableViewCell.swift */,
+			);
+			name = CustomCell;
+			sourceTree = "<group>";
+		};
+		C49DF3931F3B079300DD649F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C49DF38F1F3B076B00DD649F /* DataServices.swift */,
+				C49DF3911F3B078300DD649F /* Post.swift */,
+				C49F408E1F457FA400A4768E /* User.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,6 +214,7 @@
 				TargetAttributes = {
 					87CDD3931F32D9EC00B5AF88 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 39H8S9VB24;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -173,13 +255,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C48A0F551F4417CF003652E1 /* UpdateProfileViewController.swift in Sources */,
+				C4B9BE6F1F43F3F900703367 /* ProfileTableViewController.swift in Sources */,
 				3C1363151F336A3D0095C1DB /* SignUpViewController.swift in Sources */,
+				C49DF3861F3B065D00DD649F /* CustomUIViewUpdateStatus.swift in Sources */,
 				3C8E75E71F33291500AEF3C7 /* CustomTextField.swift in Sources */,
 				87CDD39A1F32D9EC00B5AF88 /* SignInViewController.swift in Sources */,
+				C49DF3921F3B078300DD649F /* Post.swift in Sources */,
 				3C1363171F336DBB0095C1DB /* CustomLabelAddPhoto.swift in Sources */,
+				C49F408F1F457FA400A4768E /* User.swift in Sources */,
+				C49DF3881F3B06E100DD649F /* TimelineCommentContainerView.swift in Sources */,
 				87CDD3A01F32D9EC00B5AF88 /* iOSTraining82017.xcdatamodeld in Sources */,
-				3CBECC961F3817620049E800 /* ExtensionSigninViewController.swift in Sources */,
+				C49DF38E1F3B073900DD649F /* TimelineTableViewController.swift in Sources */,
+				C48B96AF1F3BFC63003C691F /* UpdateStatusViewController.swift in Sources */,
+				3CBECC961F3817620049E800 /* Extension.swift in Sources */,
+				C49DF38A1F3B06FC00DD649F /* TimelineCommentTableViewController.swift in Sources */,
+				C49DF3901F3B076B00DD649F /* DataServices.swift in Sources */,
 				3CBECCA41F38578E0049E800 /* Helper.swift in Sources */,
+				C49DF3831F3B063700DD649F /* NewfeedItemTableViewCell.swift in Sources */,
 				87CDD3981F32D9EC00B5AF88 /* AppDelegate.swift in Sources */,
 				3C8E75E91F3329C500AEF3C7 /* CustomButton.swift in Sources */,
 			);
@@ -306,9 +399,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 39H8S9VB24;
 				INFOPLIST_FILE = iOSTraining82017/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.framgia.iOSTraining82017;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dungkv.iOSTraining82017;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -318,9 +413,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 39H8S9VB24;
 				INFOPLIST_FILE = iOSTraining82017/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.framgia.iOSTraining82017;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dungkv.iOSTraining82017;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
