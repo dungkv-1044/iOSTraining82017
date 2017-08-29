@@ -7,34 +7,44 @@
 //
 
 import UIKit
-class Post {
-    var avaImg: UIImage?
-    var nameUser: String?
-    var postTime: String?
-    var postType: String?
-    var postContent: String?
-    var photoImg: UIImage?
-    var totalComment: Int?
-    var totalLike: Int?
-    init(avaImg: UIImage, nameUser: String, postTime: String, postType: String, postContent: String, photoImg: UIImage, totalComment: Int, totalLike: Int) {
-        self.avaImg = avaImg
-        self.nameUser = nameUser
-        self.postTime = postTime
-        self.postType = postType
-        self.postContent = postContent
-        self.photoImg = photoImg
-        self.totalLike = totalLike
-        self.totalComment = totalComment
+import SwiftyJSON
+struct Post {
+    var commentCnt: Int?
+    var createdAt: String?
+    var idPost: Int?
+    var likeCnt: Int?
+    var shareCnt: Int?
+    var status: String?
+    var type: String?
+    var updatedAt: String?
+    var userPost: User?
+    init?(json: JSON) {
+        self.commentCnt = json[JSONPostKey.comment_cnt].int
+        self.createdAt = json[JSONPostKey.created_at].string
+        self.idPost = json[JSONPostKey.id].int
+        self.likeCnt = json[JSONPostKey.like_cnt].int
+        self.shareCnt = json[JSONPostKey.share_cnt].int
+        self.status = json[JSONPostKey.status].string
+        self.type = json[JSONPostKey.type].string
+        self.updatedAt = json[JSONPostKey.updated_at].string
+        let jsonData = json[JSONPostKey.user_post]
+        if let user = User(json: jsonData) {
+            self.userPost = user
+        }
     }
-    
-    init(avaImg: UIImage, nameUser: String, postTime: String, postType: String, postContent: String, totalComment: Int, totalLike: Int) {
-        self.avaImg = avaImg
-        self.nameUser = nameUser
-        self.postTime = postTime
-        self.postType = postType
-        self.postContent = postContent
-        self.totalLike = totalLike
-        self.totalComment = totalComment
+    static func createPost(data: JSON?) -> [Post]? {
+        guard let _data = data else {
+            return nil
+        }
+        var result: [Post] = []
+        guard let posts = _data.array  else { return nil }
+        for post in posts {
+            let p = Post(json: post)
+            guard let _p = p else {
+                return nil
+            }
+            result.append(_p)
+        }
+        return result
     }
 }
-

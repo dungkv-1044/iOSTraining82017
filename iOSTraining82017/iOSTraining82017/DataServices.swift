@@ -7,43 +7,69 @@
 //
 
 import Foundation
+import Alamofire
+import SwiftyJSON
 class DataServices {
-    static let shared : DataServices = DataServices()
-    
-    private var _posts : [Post]?
-    private var _indexPath : IndexPath?
-    
-    
-    var indexPath : IndexPath? {
-        set {
-            _indexPath = newValue
-        }
-        get {
-            return _indexPath
-        }
-    }
-    var posts : [Post] {
-        set {
-            _posts = newValue
-        }
-        get {
-            if _posts == nil {
-                loadData()
+    static let shared: DataServices = DataServices()
+    var request: Request?
+    var posts: [Post] = []
+    func login(username: String?, password: String?, completion: @escaping(Bool) -> Void) {
+        guard let username = username else { return }
+        guard let password = password else { return }
+        let parameters = [
+            ParameterKey.username: username,
+            ParameterKey.password: password
+        ]
+        self.request = ApiClient.request(urlRequest: UserRouter.loginAccount(parameters: parameters), completionHandler: { [weak self](responseObject) in
+            guard self != nil else { return }
+            if responseObject?.result == .success {
+                guard let data = responseObject?.data else {return}
+                let json = JSON(data)
+                guard let tokenValue = Token.init(json: json) else {return}
+                let encodedData = NSKeyedArchiver.archivedData(withRootObject: tokenValue)
+                UserDefaults.standard.set(encodedData, forKey: UserDefaultKey.tokenValue)
+                completion(true)
+            } else {
+                if responseObject?.result == .error {
+                    completion(false)
+                }
             }
-            return _posts ?? []
-        }
+        })
+    }
+    func requestAppInfo(completion: @escaping (AppInfo?) -> Void ) {
+        self.request = ApiClient.request(urlRequest: AppRouter.getAppInfo(), completionHandler: { [weak self](responseObject) in
+            guard self != nil else { return }
+            if responseObject?.result == .success {
+                guard let data = responseObject?.data else {return}
+                let json = JSON(data)
+                guard let info = AppInfo.init(json: json) else {return}
+                completion(info)
+            } else {
+                if responseObject?.result == .error {
+                }
+            }
+        })
     }
     
-    private func loadData() {
-        let p1 = Post(avaImg: #imageLiteral(resourceName: "ava_nhung_hoang"), nameUser: "Andrea Nhung", postTime: "2 hours", postType: "Public", postContent: "Abcdeasdsa", photoImg: #imageLiteral(resourceName: "ava_nhung_hoang"), totalComment: 200, totalLike: 1000)
-        let p2 = Post(avaImg: #imageLiteral(resourceName: "ava"), nameUser: "Andrea BBB", postTime: "2 hours", postType: "Public", postContent: "AbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsa",totalComment: 200, totalLike: 1000)
-        let p3 = Post(avaImg: #imageLiteral(resourceName: "ava_nhung_hoang"), nameUser: "Andrea HHH", postTime: "2 hours", postType: "Public", postContent: "Abcdeasdsa",photoImg: #imageLiteral(resourceName: "ava_nhung_hoang"), totalComment: 200, totalLike: 1000)
-        let p4 = Post(avaImg: #imageLiteral(resourceName: "ava_nhung_hoang"), nameUser: "Andrea HHH", postTime: "2 hours", postType: "Public", postContent: "Abcdeasdsa",photoImg: #imageLiteral(resourceName: "ava_nhung_hoang"), totalComment: 200, totalLike: 1000)
-        let p5 = Post(avaImg: #imageLiteral(resourceName: "ava"), nameUser: "Andrea BBB", postTime: "2 hours", postType: "Public", postContent: "AbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsa",totalComment: 200, totalLike: 1000)
-        let p6 = Post(avaImg: #imageLiteral(resourceName: "ava_nhung_hoang"), nameUser: "Andrea HHH", postTime: "2 hours", postType: "Public", postContent: "Abcdeasdsa",photoImg: #imageLiteral(resourceName: "ava"), totalComment: 200, totalLike: 1000)
-        let p7 = Post(avaImg: #imageLiteral(resourceName: "ava_nhung_hoang"), nameUser: "Andrea HHH", postTime: "2 hours", postType: "Public", postContent: "Abcdeasdsa",photoImg: #imageLiteral(resourceName: "ava_nhung_hoang"), totalComment: 200, totalLike: 1000)
-        let p8 = Post(avaImg: #imageLiteral(resourceName: "ava"), nameUser: "Andrea BBB", postTime: "2 hours", postType: "Public", postContent: "as",totalComment: 200, totalLike: 1000)
-        let p9 = Post(avaImg: #imageLiteral(resourceName: "ava"), nameUser: "Andrea BBB", postTime: "2 hours", postType: "Public", postContent: "1231321",totalComment: 200, totalLike: 1000)
-        _posts = [p1,p2,p3,p4,p5,p8,p9,p6,p7]
+    func requestAllPost(completion: @escaping([Post]?) -> Void) {
+        self.request = ApiClient.request(urlRequest: TimelineRouter.getTimeline(), completionHandler: { [weak self](responseObject) in
+            guard let strongSelf = self else { return }
+            if responseObject?.result == .success {
+                guard let data = responseObject?.data else {return}
+                let json = JSON(data)
+                guard let _posts = Post.createPost(data: json) else {return}
+                strongSelf.posts = _posts
+                completion(_posts)
+            } else {
+                if responseObject?.result == .error {
+                    completion(nil)
+                }
+            }
+            
+        })
+    }
+    func cancelRequest() {
+        self.request?.cancel()
+        self.request = nil
     }
 }

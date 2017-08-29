@@ -7,99 +7,77 @@
 //
 
 import UIKit
-
-class SignInViewController: UIViewController {
-    
+class SignInViewController: BaseViewController {
     @IBOutlet private weak var email: CustomTextField!
-    @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var password: CustomTextField!
-    var activeField: UITextField?
-    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    @IBOutlet private weak var btnLogin: CustomButton!
+    @IBOutlet private weak var btnRegister: UIButton!
+    @IBOutlet private weak var btnPassword: UIButton!
     override func viewDidLoad() {
-        super.viewDidLoad()  
+        super.viewDidLoad()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        registerForKeyboardNotifications()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        deregisterFromKeyboardNotifications()
+        DataServices.shared.cancelRequest()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         guard let email = email.text, let password = password.text else {
             return
         }
-        if email.isEmpty || password.isEmpty {
-            showAlertMessage(title: "Wrong input format", message: "Email and Password must be filled.", titleAction: "Close")
+        configUI(isActive: false)
+        if validateInputField(email: email, password: password) == true {
+            doLogin(email: email, password: password)
+        } else {
+            configUI(isActive: true)
+        }
+    }
+    private func doLogin(email: String, password: String) {
+        DataServices.shared.login(username: email, password: password) { [weak self] (boolValue) in
+            guard let strongSelf = self else { return }
+            if boolValue == true {
+                strongSelf.mainTabBarViewController?.setupMainApp()
+                strongSelf.dismiss(animated: true, completion: nil)
+            } else {
+                strongSelf.showAlertMessage(title: LoginError.titleLoginFail, message: LoginError.messageLoginFail, titleAction: LoginError.actionTitle)
+                strongSelf.configUI(isActive: true)
+            }
+        }
+    }
+    private func configUI(isActive: Bool?) {
+        guard let isActive = isActive else {
             return
         }
-        if Helper.isValidTextLength(email: email, password: password) {
-            if Helper.isValidEmail(email: email) == EmailValidationResult.EmailValid {
-                let mainTabBar = storyBoard.instantiateViewController(withIdentifier: "MainTabBar")
-                self.present(mainTabBar, animated: true, completion: nil)
-            } else {
-                showAlertMessage(title: "Wrong email format", message: "Invalid email format. Please input a correct email.", titleAction: "Close")
-            }
-            
-        } else {
-            showAlertMessage(title: "Wrong input format", message: "Email and Password must be greater than 6 chacracters", titleAction: "Close")
-        }
+        self.btnLogin.isEnabled = isActive
+        self.btnPassword.isEnabled = isActive
+        self.btnRegister.isEnabled = isActive
+        self.email.isEnabled = isActive
+        self.password.isEnabled = isActive
     }
-    //MARK: private function
-    private func showAlertMessage(title: String, message:String, titleAction: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: titleAction, style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func registerForKeyboardNotifications(){
-        //Adding notifies on keyboard appearing
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
-    
-    func deregisterFromKeyboardNotifications(){
-        //Removing notifies on keyboard appearing
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
-    
-    func keyboardWasShown(notification: NSNotification){
-        //Need to calculate keyboard exact size due to Apple suggestions
-        self.scrollView.isScrollEnabled = true
-        var info = notification.userInfo!
-        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
-        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height, 0.0)
-        
-        self.scrollView.contentInset = contentInsets
-        self.scrollView.scrollIndicatorInsets = contentInsets
-        
-        var aRect : CGRect = self.view.frame
-        aRect.size.height -= keyboardSize!.height
-        if let activeField = self.activeField {
-            if (!aRect.contains(activeField.frame.origin)){
-                self.scrollView.scrollRectToVisible(activeField.frame, animated: true)
-            }
-        }
-    }
-    
-    func keyboardWillBeHidden(notification: NSNotification){
-        //Once keyboard disappears, restore original positions
-        var info = notification.userInfo!
-        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
-        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
-        self.scrollView.contentInset = contentInsets
-        self.scrollView.scrollIndicatorInsets = contentInsets
-        self.view.endEditing(true)
-        self.scrollView.isScrollEnabled = false
-    }
-    
 }
-
-
+extension SignInViewController {
+    // MARK: Validate Input Field
+    func validateInputField(email: String, password: String) -> Bool {
+        var flag = false
+        if email.isEmpty || password.isEmpty {
+            showAlertMessage(title: LoginError.titleWrongInputType, message: LoginError.messageMustFilled, titleAction: LoginError.actionTitle)
+            flag = false
+        }
+        if Helper.isValidTextLength(email: email, password: password) {
+            if Helper.isValidEmail(email: email) == EmailValidationResult.emailValid {
+                flag = true
+            } else {
+                showAlertMessage(title: LoginError.titleWrongInputType, message: LoginError.messageInvalid, titleAction: LoginError.actionTitle)
+            }
+        } else {
+            showAlertMessage(title: LoginError.titleWrongInputType, message: LoginError.messageMustGreater, titleAction: LoginError.actionTitle)
+        }
+        return flag
+    }
+}

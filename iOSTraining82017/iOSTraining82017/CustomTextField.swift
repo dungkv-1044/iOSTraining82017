@@ -8,25 +8,18 @@
 
 import UIKit
 @IBDesignable class CustomTextField: UITextField {
-    
-    @IBInspectable var isCornerRadius : Bool = false {
+    @IBInspectable var cornerRadius: CGFloat = 0.0 {
         didSet {
-            if isCornerRadius {
-                self.layer.cornerRadius  = self.frame.height / 2
-            }
+            self.layer.cornerRadius  = cornerRadius
         }
     }
-    
     @IBInspectable var borderWidth: CGFloat = 1 {
         didSet {
             self.layer.borderWidth = borderWidth
-           
         }
     }
     @IBInspectable var borderColor: UIColor = UIColor.clear {
-        
         didSet {
-            
             self.layer.borderColor = borderColor.cgColor
         }
     }
@@ -38,5 +31,4 @@ import UIKit
             self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSForegroundColorAttributeName: newValue!])
         }
     }
-    
 }
