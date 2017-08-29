@@ -8,33 +8,30 @@
 
 import UIKit
 enum EmailValidationResult {
-    case EmailValid
-    case EmailEmpty
-    case EmailInvalid
+    case emailValid
+    case emailEmpty
+    case emailInvalid
 }
 class Helper {
-    //MARK: Validate email format
-    
-    
+    // MARK: Validate email format
     static func isValidEmail(email: String) -> (EmailValidationResult) {
-        
         // Check empty string
         guard email.characters.count > 0 else {
-            return EmailValidationResult.EmailEmpty
+            return EmailValidationResult.emailEmpty
         }
         // Check email format
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         guard emailTest.evaluate(with: email) else {
-            return EmailValidationResult.EmailInvalid
+            return EmailValidationResult.emailInvalid
         }
-        
-        return EmailValidationResult.EmailValid
+        return EmailValidationResult.emailValid
     }
-    //MARK: Validate email and password length
-    
+    // MARK: Validate email and password length
     static func isValidTextLength(email: String, password: String) -> Bool {
         return email.characters.count > 6 && password.characters.count > 6
     }
-    
+}
+struct NotificationKey {
+    static var didFetchPostSuccess = Notification.Name.init("didFetchPostsFromURL")
 }

@@ -10,9 +10,8 @@ import UIKit
 
 class TimelineCommentContainerView: UIViewController {
 
-    var timelineCommentTVC : TimelineCommentTableViewController?
-    var selectedIndexPath : Int?
-    
+    var timelineCommentTVC: TimelineCommentTableViewController?
+    var selectedIndexPath: Int?
     @IBOutlet private weak var bottomWriteCommentConstant: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +28,6 @@ class TimelineCommentContainerView: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         if segue.identifier == "TimelineCommentTVC" {
@@ -41,9 +39,10 @@ class TimelineCommentContainerView: UIViewController {
         }
     }
     @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
-        navigationController?.popViewController(animated: true)
+        if let owningNavigationController = navigationController {
+            owningNavigationController.popViewController(animated: true)
+        }
     }
-    
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0 {
@@ -51,7 +50,6 @@ class TimelineCommentContainerView: UIViewController {
             }
         }
     }
-    
     func showWriteComment() {
         self.bottomWriteCommentConstant.constant = 0
     }
@@ -63,5 +61,4 @@ extension TimelineCommentContainerView: UITextFieldDelegate {
         showWriteComment()
         return true
     }
-    
 }

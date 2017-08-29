@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 struct PropertyKey {
     static let backgroundImage = "backgroundImage"
     static let avatarImage = "avatarImage"
@@ -15,14 +16,18 @@ struct PropertyKey {
     static let phoneNumber = "phoneNumber"
     static let dob = "dob"
 }
-class User : NSObject, NSCoding {
+class User: NSObject, NSCoding {
     var backgroundImage: UIImage?
     var avatarImage: UIImage?
     var userName: String?
     var emailAddress: String?
     var phoneNumber: String?
     var dob: String?
-    init(backgroundImage: UIImage, avatarImage: UIImage,userName: String,emailAddress: String,phoneNumber: String,dob: String ) {
+    var idUser: Int?
+    init?(json: JSON) {
+        self.idUser = json["id"].int
+    }
+    init(backgroundImage: UIImage, avatarImage: UIImage, userName: String, emailAddress: String, phoneNumber: String, dob: String ) {
         self.backgroundImage = backgroundImage
         self.avatarImage = avatarImage
         self.userName = userName
@@ -38,7 +43,6 @@ class User : NSObject, NSCoding {
         self.phoneNumber = decoder.decodeObject(forKey: PropertyKey.phoneNumber) as? String
         self.dob = decoder.decodeObject(forKey: PropertyKey.dob) as? String
     }
-    
     func encode(with coder: NSCoder) {
         coder.encode(backgroundImage, forKey: PropertyKey.backgroundImage)
         coder.encode(avatarImage, forKey: PropertyKey.avatarImage)

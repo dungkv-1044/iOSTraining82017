@@ -7,43 +7,89 @@
 //
 
 import Foundation
+import Alamofire
+import SwiftyJSON
 class DataServices {
-    static let shared : DataServices = DataServices()
-    
-    private var _posts : [Post]?
-    private var _indexPath : IndexPath?
-    
-    
-    var indexPath : IndexPath? {
+    static let shared: DataServices = DataServices()
+    let mainUrl = "https://www.getpostman.com/collections/4f7efb3c7e9d556e924f"
+    private var _requestObjects: [RequestObject]?
+    var requestObjects: [RequestObject] {
         set {
-            _indexPath = newValue
+            _requestObjects = newValue
         }
         get {
-            return _indexPath
-        }
-    }
-    var posts : [Post] {
-        set {
-            _posts = newValue
-        }
-        get {
-            if _posts == nil {
-                loadData()
+            if _requestObjects == nil {
+                requestJSONFromURL()
             }
-            return _posts ?? []
+            return _requestObjects ?? []
         }
     }
-    
-    private func loadData() {
-        let p1 = Post(avaImg: #imageLiteral(resourceName: "ava_nhung_hoang"), nameUser: "Andrea Nhung", postTime: "2 hours", postType: "Public", postContent: "Abcdeasdsa", photoImg: #imageLiteral(resourceName: "ava_nhung_hoang"), totalComment: 200, totalLike: 1000)
-        let p2 = Post(avaImg: #imageLiteral(resourceName: "ava"), nameUser: "Andrea BBB", postTime: "2 hours", postType: "Public", postContent: "AbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsa",totalComment: 200, totalLike: 1000)
-        let p3 = Post(avaImg: #imageLiteral(resourceName: "ava_nhung_hoang"), nameUser: "Andrea HHH", postTime: "2 hours", postType: "Public", postContent: "Abcdeasdsa",photoImg: #imageLiteral(resourceName: "ava_nhung_hoang"), totalComment: 200, totalLike: 1000)
-        let p4 = Post(avaImg: #imageLiteral(resourceName: "ava_nhung_hoang"), nameUser: "Andrea HHH", postTime: "2 hours", postType: "Public", postContent: "Abcdeasdsa",photoImg: #imageLiteral(resourceName: "ava_nhung_hoang"), totalComment: 200, totalLike: 1000)
-        let p5 = Post(avaImg: #imageLiteral(resourceName: "ava"), nameUser: "Andrea BBB", postTime: "2 hours", postType: "Public", postContent: "AbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsaAbcdeasdsa",totalComment: 200, totalLike: 1000)
-        let p6 = Post(avaImg: #imageLiteral(resourceName: "ava_nhung_hoang"), nameUser: "Andrea HHH", postTime: "2 hours", postType: "Public", postContent: "Abcdeasdsa",photoImg: #imageLiteral(resourceName: "ava"), totalComment: 200, totalLike: 1000)
-        let p7 = Post(avaImg: #imageLiteral(resourceName: "ava_nhung_hoang"), nameUser: "Andrea HHH", postTime: "2 hours", postType: "Public", postContent: "Abcdeasdsa",photoImg: #imageLiteral(resourceName: "ava_nhung_hoang"), totalComment: 200, totalLike: 1000)
-        let p8 = Post(avaImg: #imageLiteral(resourceName: "ava"), nameUser: "Andrea BBB", postTime: "2 hours", postType: "Public", postContent: "as",totalComment: 200, totalLike: 1000)
-        let p9 = Post(avaImg: #imageLiteral(resourceName: "ava"), nameUser: "Andrea BBB", postTime: "2 hours", postType: "Public", postContent: "1231321",totalComment: 200, totalLike: 1000)
-        _posts = [p1,p2,p3,p4,p5,p8,p9,p6,p7]
+    var posts: [Post] = []
+    func requestJSONFromURL() {
+        Alamofire.request(mainUrl).responseJSON { (response) -> Void in
+            switch response.result {
+            case .success:
+                guard let data = response.data else {return}
+                let json = JSON(data: data)
+                let requestObjects = RequestObject.createRequestObject(data: json)
+                guard let _result = requestObjects else {return}
+                self.requestObjects = _result
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    func login(username: String?, password: String?, completion: @escaping(Bool) -> Void) {
+        guard let username = username else { return }
+        guard let password = password else { return }
+        let parameters = [
+            "username": username,
+            "password": password
+        ]
+        Alamofire.request(UserRouter.loginAccount(parameters: parameters)).responseJSON { (response) -> Void in
+            switch response.result {
+            case .success:
+                guard let data = response.data else {return}
+                let json = JSON(data: data)
+                guard let tokenValue = Token.init(json: json) else {return}
+                let encodedData = NSKeyedArchiver.archivedData(withRootObject: tokenValue)
+                UserDefaults.standard.set(encodedData, forKey: "tokenValue")
+                completion(true)
+                print(json)
+            case .failure(let error):
+                completion(false)
+                print(error)
+            }
+        }
+    }
+    func requestAppInfo(completion: @escaping (AppInfo?) -> Void ) {
+        Alamofire.request(AppRouter.getAppInfo()).responseJSON { (response) -> Void in
+            switch response.result {
+            case .success:
+                guard let data = response.data else {return}
+                let json = JSON(data: data)
+                guard let info = AppInfo.init(json: json) else {return}
+                completion(info)
+            case .failure(let error):
+                completion(nil)
+                print(error)
+            }
+        }
+    }
+    func requestAllPost(completion: @escaping([Post]?) -> Void) {
+        Alamofire.request(TimelineRouter.getTimeline()).responseJSON { response in
+            switch response.result {
+            case .success:
+                guard let data = response.data else {return}
+                let json = JSON(data: data)
+                guard let _posts = Post.createPost(data: json) else {return}
+                self.posts = _posts
+//                print(json)
+                completion(_posts)
+            case .failure(let error):
+                completion(nil)
+                print(error)
+            }
+        }
     }
 }

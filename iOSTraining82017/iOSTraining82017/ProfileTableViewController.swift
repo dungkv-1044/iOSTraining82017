@@ -23,28 +23,23 @@ class ProfileTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
-    
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return DataServices.shared.posts.count
     }
-
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewfeedItem", for: indexPath) as! NewfeedItemTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewfeedItem", for: indexPath) as? NewfeedItemTableViewCell
         let post = DataServices.shared.posts[indexPath.row]
-        cell.configureCell(post: post, indexPath: indexPath)
-        cell.layoutIfNeeded()
-        return cell
+        cell?.configureCell(post: post, indexPath: indexPath)
+        cell?.layoutIfNeeded()
+        return cell!
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
     }
-    //MARK: Cache cell height and return estimatedHeight
+    // MARK: Cache cell height and return estimatedHeight
     fileprivate var tableViewEstimateHeightCaches = [String: CGFloat]()
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // get height of cell, and cache in array
@@ -52,7 +47,6 @@ class ProfileTableViewController: UITableViewController {
         let key = self.getKeyCachedAtIndexPath(indexPath: indexPath)
         self.tableViewEstimateHeightCaches[key] = eheight
     }
-    
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         // get estimate height in cached array
         let key = self.getKeyCachedAtIndexPath(indexPath: indexPath)
@@ -100,8 +94,6 @@ class ProfileTableViewController: UITableViewController {
         return true
     }
     */
-
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -110,16 +102,13 @@ class ProfileTableViewController: UITableViewController {
 //        // Pass the selected object to the new view controller.
 //    }
     @IBAction func unwindToProfile(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? UpdateProfileViewController {
+        if sender.source is UpdateProfileViewController {
             if let data = UserDefaults.standard.data(forKey: "user"),
                 let user = NSKeyedUnarchiver.unarchiveObject(with: data) as? User {
                 bgrProfile.image = user.backgroundImage
                 avaImage.image = user.avatarImage
                 name.text = user.userName
-               
             }
-           
-            
         }
     }
 
